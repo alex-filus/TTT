@@ -10,9 +10,6 @@ namespace TTT
     {
         static void Main(string[] args)
         {
-            string columnChoice = "0";
-            string rowChoice = "0";
-
 
             //grid printout
             Logic.PrintGrid(Logic.grid);

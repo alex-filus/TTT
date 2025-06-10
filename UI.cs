@@ -46,15 +46,37 @@ namespace TTT
                     // Ask user to choose a spot
                     UserTurn();
 
+                    //check for a win                 
+                    if (Logic.WinCheck() == true)
+                    {
+                        Console.WriteLine("Congrats! You win!");
+                        break;
+                    }
+
+                }
+
+                if (Logic.NotFull() == true)
+                {
                     //Computer placing a symbol 
                     ComputerTurn();
+
+                    //check for a win
+                    if (Logic.WinCheck() == true)
+                    {
+                        Console.WriteLine("Sorry, computer wins :(");
+                        break;
+                    }
+
                 }
 
                 else
                 {
-                    Console.WriteLine("Sorry, game over!");
+                    Console.WriteLine("Sorry, game over! No winner!");
+                    break;
                 }
             }
+
+
         }
 
         // Ask user to choose a spot
@@ -62,6 +84,7 @@ namespace TTT
         {
             while (true)
             {
+
                 Console.WriteLine();
                 Console.WriteLine($"Where would you like to place the {UI.symbolChoice}?");
                 Console.WriteLine("Which column? Type 0, 1 or 2.");
