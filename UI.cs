@@ -98,10 +98,10 @@ namespace TTT
                 {
                     if (row >= 0 && row < 3 && column >= 0 && column < 3)
                     {
-                        if (Logic.grid[row, column] == " ")
+                        if (Program.grid[row, column] == " ")
                         {
-                            Logic.grid[row, column] = UI.symbolChoice;
-                            Logic.PrintGrid(Logic.grid);
+                            Program.grid[row, column] = UI.symbolChoice;
+                            Program.PrintGrid(Program.grid);
                             break;
                         }
                         else
@@ -136,10 +136,10 @@ namespace TTT
                 randomColumn = random.Next(0, 3);
             }
 
-            while (Logic.grid[randomRow, randomColumn] != " ");
+            while (Program.grid[randomRow, randomColumn] != " ");
 
-            Logic.grid[randomRow, randomColumn] = UI.computerSymbol;
-            Logic.PrintGrid(Logic.grid);
+            Program.grid[randomRow, randomColumn] = UI.computerSymbol;
+            Program.PrintGrid(Program.grid);
             Console.WriteLine();
         }
     }

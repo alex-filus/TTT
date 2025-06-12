@@ -13,34 +13,6 @@ namespace TTT
 {
     class Logic
     {
-
-        public const int COLUMNS = 3;
-        public const int ROWS = 3;
-
-        public static string[,] grid =
-          {
-                { " ", " ", " " },
-                { " ", " ", " " },
-                { " ", " ", " " }
-            };
-        public static void PrintGrid(string[,] grid)
-        {
-            for (int i = 0; i < ROWS; i++)
-            {
-                Console.WriteLine(" --- --- ---", Color.Green);
-
-                for (int j = 0; j < COLUMNS; j++)
-                {
-                    Console.Write("| " + grid[i, j] + " ", Color.Red);
-                }
-
-                Console.WriteLine("|", Color.Red);
-
-            }
-
-            Console.WriteLine(" --- --- ---", Color.Green);
-        }
-
         // Assigning a symbol to the computer
         public static void ComputerSymbolAssign()
         {
@@ -58,11 +30,11 @@ namespace TTT
         public static bool NotFull()
         {
 
-            for (int row = 0; row < Logic.ROWS; row++)
+            for (int row = 0; row < Program.ROWS; row++)
             {
-                for (int col = 0; col < Logic.COLUMNS; col++)
+                for (int col = 0; col < Program.COLUMNS; col++)
                 {
-                    if (Logic.grid[row, col] == " ")
+                    if (Program.grid[row, col] == " ")
                         return true;
                 }
             }
@@ -74,36 +46,36 @@ namespace TTT
         public static bool WinCheck()
         {
             //check for horizontal win
-            for (int row = 0; row < ROWS; row++)
+            for (int row = 0; row < Program.ROWS; row++)
             {
-                if (grid[row, 0] == grid[row, 1] && grid[row, 1] == grid[row, 2] && grid[row, 0] != " ") 
+                if (Program.grid[row, 0] == Program.grid[row, 1] && Program.grid[row, 1] == Program.grid[row, 2] && Program.grid[row, 0] != " ") 
                 {
                     return true;
                 }               
             }
 
             //check for vertical win
-            for (int col = 0; col < COLUMNS; col++)
+            for (int col = 0; col < Program.COLUMNS; col++)
             {
-                if (grid[0, col] == grid[1, col] && grid[1, col] == grid[2, col] && grid[0, col] != " ")
+                if (Program.grid[0, col] == Program.grid[1, col] && Program.grid[1, col] == Program.grid[2, col] && Program.grid[0, col] != " ")
                 {
                     return true;
                 }               
             }
 
             //check for diagonal win 1
-            for (int row = 1; row < ROWS; row++)
+            for (int row = 1; row < Program.ROWS; row++)
             {
-                if (grid[0, 0] == grid[1, 1] && grid[1, 1] == grid[2, 2] && grid[0, 0] != " ")
+                if (Program.grid[0, 0] == Program.grid[1, 1] && Program.grid[1, 1] == Program.grid[2, 2] && Program.grid[0, 0] != " ")
                 {
                     return true;
                 }
             }
 
             //check for diagonal win 2
-            for (int row = 1; row < ROWS; row++)
+            for (int row = 1; row < Program.ROWS; row++)
             {
-                if (grid[0, 2] == grid[1, 1] && grid[1, 1] == grid[2, 0] && grid[0, 2] != " ")
+                if (Program.grid[0, 2] == Program.grid[1, 1] && Program.grid[1, 1] == Program.grid[2, 0] && Program.grid[0, 2] != " ")
                 {
                     return true;
                 }

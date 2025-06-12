@@ -8,18 +8,35 @@ namespace TTT
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public const int COLUMNS = 3;
+        public const int ROWS = 3;
+
+        public static string[,] grid =
         {
+            { " ", " ", " " },
+            { " ", " ", " " },
+            { " ", " ", " " }
+        };
 
-            //grid printout
-            Logic.PrintGrid(Logic.grid);
-            Console.WriteLine();
-
-            //start the main game while loop
-            UI.StartGame();
-
-
+        public static void PrintGrid(string[,] grid)
+        {
+            for (int i = 0; i < ROWS; i++)
+            {
+                Console.WriteLine(" --- --- ---", Color.Green);
+                for (int j = 0; j < COLUMNS; j++)
+                {
+                    Console.Write("| " + grid[i, j] + " ", Color.Red);
+                }
+                Console.WriteLine("|", Color.Red);
+            }
+            Console.WriteLine(" --- --- ---", Color.Green);
         }
 
+        static void Main(string[] args)
+        {
+            // Example usage
+            PrintGrid(grid);
+            UI.StartGame();
+        }
     }
 }
