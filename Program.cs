@@ -8,35 +8,70 @@ namespace TTT
 {
     internal class Program
     {
-        public const int COLUMNS = 3;
-        public const int ROWS = 3;
-
-        public static string[,] grid =
+        static void Main(string[] args)
         {
+            string[,] grid =
+         {
             { " ", " ", " " },
             { " ", " ", " " },
             { " ", " ", " " }
         };
 
-        public static void PrintGrid(string[,] grid)
-        {
-            for (int i = 0; i < ROWS; i++)
-            {
-                Console.WriteLine(" --- --- ---", Color.Green);
-                for (int j = 0; j < COLUMNS; j++)
-                {
-                    Console.Write("| " + grid[i, j] + " ", Color.Red);
-                }
-                Console.WriteLine("|", Color.Red);
-            }
-            Console.WriteLine(" --- --- ---", Color.Green);
-        }
 
-        static void Main(string[] args)
-        {
-            // Example usage
-            PrintGrid(grid);
-            UI.StartGame();
+            //Welcome Message
+            UI.DisplayWelcomeMessage();
+
+            string computerSymbol = " ";           
+
+            UI.PrintGrid(grid);
+
+            //User chooses symbol
+            string symbolChoice = UI.AskUserForSymbol();
+
+            //assign symbol to the computer
+            Logic.ComputerSymbolAssign(symbolChoice);
+
+            //Main game loop
+            while (true)
+            {
+                if (Logic.NotFull(grid) == true)
+                {
+                    // Ask user to choose a spot
+                    UI.UserTurn(symbolChoice, grid);
+
+                    //check for a win                 
+                    if (Logic.WinCheck(grid) == true)
+                    {
+                        Console.WriteLine("Congrats! You win!");
+                        break;
+                    }
+                }
+
+                if (Logic.NotFull(grid) == true)
+                {
+                    //Computer placing a symbol 
+                    UI.PrintComputerTurnMessage();
+                    UI.ComputerTurn(grid, computerSymbol);
+
+                    //check for a win
+                    if (Logic.WinCheck(grid) == true)
+                    {
+                        Console.WriteLine("Sorry, computer wins :(");
+                        break;
+                    }
+                }
+
+                else
+                {
+                    Console.WriteLine("Sorry, game over! No winner!");
+                    break;
+                }
+            }
+
+
+
+
+
         }
     }
 }
