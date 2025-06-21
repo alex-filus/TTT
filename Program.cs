@@ -29,7 +29,7 @@ namespace TTT
             string symbolChoice = UI.AskUserForSymbol();
 
             //assign symbol to the computer
-            Logic.ComputerSymbolAssign(symbolChoice);
+            computerSymbol = Logic.ComputerSymbolAssign(symbolChoice);
 
             //Main game loop
             while (true)
