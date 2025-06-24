@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Data.Common;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using TTT;
+﻿using System.Drawing;
 using Console = Colorful.Console;
 
 namespace TTT
@@ -29,35 +19,34 @@ namespace TTT
             Console.WriteLine(" --- --- ---", Color.Green);
         }
 
-        public static void DisplayWelcomeMessage()
+        public static void PrintWelcomeMessage()
         {
             Console.WriteLine("Welcome to Tic-Tac-Toe! Let's play!");
             Console.WriteLine();
         }
 
-        public static string AskUserForSymbol()
+        public static char AskForSymbol()
         {
             Console.WriteLine($"What symbol would you like to be? \nPress {Constants.SYMBOL_CHOICE_O} or {Constants.SYMBOL_CHOICE_X}.");
-            string symbolChoice = Console.ReadLine()?.ToUpper();
+            string input = Console.ReadLine()?.ToUpper();
 
             // User chooses a symbol
-            while (symbolChoice != Constants.SYMBOL_CHOICE_O && symbolChoice != Constants.SYMBOL_CHOICE_X)
+            while (input != Constants.SYMBOL_CHOICE_O.ToString() && input != Constants.SYMBOL_CHOICE_X.ToString())
             {
                 Console.WriteLine("Incorrect input. Please try again.");
-                symbolChoice = Console.ReadLine()?.ToUpper();
+                input = Console.ReadLine()?.ToUpper();
             }
 
+            char symbolChoice = input[0];
             Console.WriteLine($"You chose: {symbolChoice}");
             return symbolChoice;
         }        
               
-
         // Ask user to choose a spot
-        public static void UserTurn(string symbolChoice, string [,] grid)
+        public static void AskForUserMove(char symbolChoice, string [,] grid)
         {
             while (true)
             {
-
                 Console.WriteLine();
                 Console.WriteLine($"Where would you like to place the {symbolChoice}?");
                 Console.WriteLine("Which column? Type 0, 1 or 2.");
@@ -69,11 +58,11 @@ namespace TTT
 
                 if (int.TryParse(columnChoice, out column) && int.TryParse(rowChoice, out row))
                 {
-                    if (row >= 0 && row < 3 && column >= 0 && column < 3)
+                    if (row >= 0 && row < Constants.ROWS && column >= 0 && column < 3)
                     {
                         if (grid[row, column] == " ")
                         {
-                            grid[row, column] = symbolChoice;
+                            grid[row, column] = symbolChoice.ToString();
                             PrintGrid(grid);
                             break;
                         }
@@ -98,7 +87,7 @@ namespace TTT
             Console.WriteLine();
         }
         //Computer placing a symbol
-        public static void ComputerTurn(string [,] grid, string computerSymbol)
+        public static void GenerateComputerMove(string [,] grid, char computerSymbol)
         {
             Random random = new Random();
 
@@ -108,13 +97,13 @@ namespace TTT
             // generate a random spot only if not taken
             do
             {
-                randomRow = random.Next(0, 3);
-                randomColumn = random.Next(0, 3);
+                randomRow = random.Next(0, Constants.MAX_RANDOM_ROWS);
+                randomColumn = random.Next(0, Constants.MAX_RANDOM_COLUMNS);
             }
 
             while (grid[randomRow, randomColumn] != " ");
 
-            grid[randomRow, randomColumn] = computerSymbol;
+            grid[randomRow, randomColumn] = computerSymbol.ToString();
             PrintGrid(grid);
             Console.WriteLine();
         }
