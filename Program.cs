@@ -26,7 +26,7 @@ namespace TTT
             //Main game loop
             while (true)
             {
-                if (Logic.CheckIfFull(grid) == true)
+                if (Logic.CheckIfFull(grid) == false)
                 {
                     // Ask user to choose a spot
                     UI.AskForUserMove(symbolChoice, grid);
@@ -39,11 +39,14 @@ namespace TTT
                     }
                 }
 
-                if (Logic.CheckIfFull(grid) == true)
+                if (Logic.CheckIfFull(grid) == false)
                 {
                     //Computer placing a symbol 
                     UI.PrintComputerTurnMessage();
-                    UI.GenerateComputerMove(grid, computerSymbol);
+                    Logic.GenerateComputerMove(grid, computerSymbol);
+
+                    UI.PrintGrid(grid);
+                    Console.WriteLine();
 
                     //check for a win
                     if (Logic.CheckWin(grid) == true)

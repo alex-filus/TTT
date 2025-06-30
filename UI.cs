@@ -4,19 +4,31 @@ using Console = Colorful.Console;
 namespace TTT
 {
     class UI
-    {            
+    {
         public static void PrintGrid(string[,] grid)
         {
+            //top border
+            for (int j = 0; j < Constants.COLUMNS; j++)
+            {
+                Console.Write(" --", Color.Green);
+            }
+            Console.WriteLine();
+
             for (int i = 0; i < Constants.ROWS; i++)
             {
-                Console.WriteLine(" --- --- ---", Color.Green);
                 for (int j = 0; j < Constants.COLUMNS; j++)
                 {
                     Console.Write("| " + grid[i, j] + " ", Color.Red);
                 }
                 Console.WriteLine("|", Color.Red);
+
+                //Row separator
+                for (int j = 0; j < Constants.COLUMNS; j++)
+                {
+                    Console.Write(" --", Color.Green);
+                }
+                Console.WriteLine();
             }
-            Console.WriteLine(" --- --- ---", Color.Green);
         }
 
         public static void PrintWelcomeMessage()
@@ -40,10 +52,10 @@ namespace TTT
             char symbolChoice = input[0];
             Console.WriteLine($"You chose: {symbolChoice}");
             return symbolChoice;
-        }        
-              
+        }
+
         // Ask user to choose a spot
-        public static void AskForUserMove(char symbolChoice, string [,] grid)
+        public static void AskForUserMove(char symbolChoice, string[,] grid)
         {
             while (true)
             {
@@ -86,26 +98,8 @@ namespace TTT
             Thread.Sleep(3000);
             Console.WriteLine();
         }
-        //Computer placing a symbol
-        public static void GenerateComputerMove(string [,] grid, char computerSymbol)
-        {
-            Random random = new Random();
 
-            int randomColumn;
-            int randomRow;
 
-            // generate a random spot only if not taken
-            do
-            {
-                randomRow = random.Next(0, Constants.MAX_RANDOM_ROWS);
-                randomColumn = random.Next(0, Constants.MAX_RANDOM_COLUMNS);
-            }
 
-            while (grid[randomRow, randomColumn] != " ");
-
-            grid[randomRow, randomColumn] = computerSymbol.ToString();
-            PrintGrid(grid);
-            Console.WriteLine();
-        }
     }
 }

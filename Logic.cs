@@ -2,6 +2,9 @@
 {
     class Logic
     {
+        //
+        public static readonly Random random = new Random();
+
         // Assigning a symbol to the computer
         public static char AssignComputerSymbol(char symbolChoice)
         {
@@ -15,7 +18,7 @@
             {
                 computerSymbol = Constants.SYMBOL_CHOICE_O;
             }
-           
+
             Console.WriteLine($"Computer symbol is: {computerSymbol}");
             return computerSymbol;
         }
@@ -28,10 +31,10 @@
                 for (int col = 0; col < Constants.COLUMNS; col++)
                 {
                     if (grid[row, col] == " ")
-                        return true;
+                        return false;
                 }
             }
-            return false;
+            return true;
         }
 
         //check for a win
@@ -44,10 +47,17 @@
         {
             for (int row = 0; row < Constants.ROWS; row++)
             {
-                if (grid[row, 0] == grid[row, 1] && grid[row, 1] == grid[row, 2] && grid[row, 0] != " ")
+                bool rowWin = true;
+                for (int col = 1; col < Constants.COLUMNS; col++)
                 {
-                    return true;
+                    if (grid[row, 0] != grid[row, col])
+                    {
+                        rowWin = false;
+                        break;
+                    }
                 }
+                if (rowWin)
+                    return true;
             }
             return false;
         }
@@ -87,8 +97,8 @@
                 }
             }
             return false;
-        }       
-        
+        }
+
         //create a grid
         public static string[,] CreateGrid()
         {
@@ -102,9 +112,26 @@
                 }
             }
             return grid;
-        
+
         }
+        //Computer placing a symbol
+        public static void GenerateComputerMove(string[,] grid, char computerSymbol)
+        {           
+            int randomColumn;
+            int randomRow;
+
+            // generate a random spot only if not taken
+            do
+            {
+                randomRow = random.Next(0, Constants.MAX_RANDOM_ROWS);
+                randomColumn = random.Next(0, Constants.MAX_RANDOM_COLUMNS);
+            }
+
+            while (grid[randomRow, randomColumn] != " ");
+
+            grid[randomRow, randomColumn] = computerSymbol.ToString();
         }
+    }
 }
 
 
