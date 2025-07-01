@@ -30,7 +30,7 @@
             {
                 for (int col = 0; col < Constants.COLUMNS; col++)
                 {
-                    if (grid[row, col] == " ")
+                    if (grid[row, col] == null)
                         return false;
                 }
             }
@@ -50,14 +50,18 @@
                 bool rowWin = true;
                 for (int col = 1; col < Constants.COLUMNS; col++)
                 {
-                    if (grid[row, 0] != grid[row, col])
+                    if (grid[row, 0]!= null && grid[row, 0] != grid[row, col])
                     {
+                       
                         rowWin = false;
                         break;
                     }
                 }
                 if (rowWin)
+                {
+                    Console.WriteLine("CheckHorizontalWin method hit");
                     return true;
+                }
             }
             return false;
         }

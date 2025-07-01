@@ -72,7 +72,7 @@ namespace TTT
                 {
                     if (row >= 0 && row < Constants.ROWS && column >= 0 && column < 3)
                     {
-                        if (grid[row, column] == " ")
+                        if (grid[row, column] == null)
                         {
                             grid[row, column] = symbolChoice.ToString();
                             PrintGrid(grid);
