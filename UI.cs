@@ -98,8 +98,5 @@ namespace TTT
             Thread.Sleep(3000);
             Console.WriteLine();
         }
-
-
-
     }
 }

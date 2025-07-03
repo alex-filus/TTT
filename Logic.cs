@@ -47,19 +47,20 @@
         {
             for (int row = 0; row < Constants.ROWS; row++)
             {
+                if (grid[row, 0] == null)
+                    continue;
+
                 bool rowWin = true;
                 for (int col = 1; col < Constants.COLUMNS; col++)
                 {
-                    if (grid[row, 0]!= null && grid[row, 0] != grid[row, col])
+                    if (grid[row, 0] != null && grid[row, 0] != grid[row, col])
                     {
-                       
                         rowWin = false;
                         break;
                     }
                 }
                 if (rowWin)
                 {
-                    Console.WriteLine("CheckHorizontalWin method hit");
                     return true;
                 }
             }
@@ -71,34 +72,55 @@
         {
             for (int col = 0; col < Constants.COLUMNS; col++)
             {
-                if (grid[0, col] == grid[1, col] && grid[1, col] == grid[2, col] && grid[0, col] != " ")
+                if (grid[0, col] == null)
+                    continue;
+                bool columnWin = true;
+                for (int row = 0; row < Constants.ROWS; row++)
                 {
-                    return true;
+                    if (grid[0, col] != null && grid[0, col] != grid[row, col])
+                    {
+                        columnWin = false;
+                        break;
+                    }
                 }
+                if (columnWin)
+                    return true;
             }
             return false;
         }
         //check for diagonal win 1
         public static bool CheckDiagonalWin1(string[,] grid)
-        {
+        {      
+            bool diagonalWin1 = true;
             for (int row = 1; row < Constants.ROWS; row++)
             {
-                if (grid[0, 0] == grid[1, 1] && grid[1, 1] == grid[2, 2] && grid[0, 0] != " ")
+                if (grid[0, 0] == null)
+                    continue;
+                if (grid[0, 0] != null && grid[0, 0] != grid[row, row]) 
                 {
-                    return true;
+                    diagonalWin1 = false;
+                    break;
                 }
+                if (diagonalWin1)
+                    return true;
             }
             return false;
         }
         //check for diagonal win 2
         public static bool CheckDiagonalWin2(string[,] grid)
         {
-            for (int row = 1; row < Constants.ROWS; row++)
+            bool diagonalWin2 = true;
+            for (int col = 1; col < Constants.COLUMNS; col++)
             {
-                if (grid[0, 2] == grid[1, 1] && grid[1, 1] == grid[2, 0] && grid[0, 2] != " ")
+                if (grid[Constants.ROWS - 1, 0] == null)
+                    continue;
+                if (grid[Constants.ROWS - 1, 0] != null && grid[Constants.ROWS - 1, 0] != grid[Constants.ROWS - 1 - col, col])
                 {
-                    return true;
+                    diagonalWin2 = false;
+                    break;
                 }
+                if (diagonalWin2)
+                    return true;
             }
             return false;
         }
@@ -120,7 +142,7 @@
         }
         //Computer placing a symbol
         public static void GenerateComputerMove(string[,] grid, char computerSymbol)
-        {           
+        {
             int randomColumn;
             int randomRow;
 
@@ -131,7 +153,7 @@
                 randomColumn = random.Next(0, Constants.MAX_RANDOM_COLUMNS);
             }
 
-            while (grid[randomRow, randomColumn] != " ");
+            while (grid[randomRow, randomColumn] != null);
 
             grid[randomRow, randomColumn] = computerSymbol.ToString();
         }
