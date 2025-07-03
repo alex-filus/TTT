@@ -96,15 +96,13 @@
             {
                 if (grid[0, 0] == null)
                     continue;
-                if (grid[0, 0] != null && grid[0, 0] != grid[row, row]) 
+                if (grid[0, 0] != null && grid[0, 0] != grid[row, row])
                 {
                     diagonalWin1 = false;
                     break;
-                }
-                if (diagonalWin1)
-                    return true;
+                }   
             }
-            return false;
+            return diagonalWin1;
         }
         //check for diagonal win 2
         public static bool CheckDiagonalWin2(string[,] grid)
