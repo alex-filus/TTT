@@ -36,6 +36,25 @@ namespace TTT
             Console.WriteLine("Welcome to Tic-Tac-Toe! Let's play!");
             Console.WriteLine();
         }
+        public static void PrintYouWinMessage()
+        {
+            Console.WriteLine("Congrats! You win!");
+        }
+
+        public static void PrintComputerWinsMessage()
+        {
+            Console.WriteLine("Sorry, computer wins :(");
+        }
+
+        public static void PrintNoWinnerMessage()
+        {
+            Console.WriteLine("Sorry, game over! No winner!");
+        }
+
+        public static void PrintComputerSymbol()
+        {
+            Console.WriteLine($"Computer symbol is: {Logic.computerSymbol}");
+        }
 
         public static char AskForSymbol()
         {

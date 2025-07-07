@@ -12,14 +12,11 @@
             if (symbolChoice == Constants.SYMBOL_CHOICE_O)
             {
                 computerSymbol = Constants.SYMBOL_CHOICE_X;
-
             }
             else
             {
                 computerSymbol = Constants.SYMBOL_CHOICE_O;
-            }
-
-            Console.WriteLine($"Computer symbol is: {computerSymbol}");
+            }           
             return computerSymbol;
         }
 
@@ -116,11 +113,9 @@
                 {
                     diagonalWin2 = false;
                     break;
-                }
-                if (diagonalWin2)
-                    return true;
+                }              
             }
-            return false;
+            return diagonalWin2;
         }
 
         //create a grid

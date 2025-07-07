@@ -22,6 +22,7 @@ namespace TTT
 
             //assign symbol to the computer
             computerSymbol = Logic.AssignComputerSymbol(symbolChoice);
+            UI.PrintComputerSymbol();           
 
             //Main game loop
             while (true)
@@ -34,7 +35,7 @@ namespace TTT
                     //check for a win                 
                     if (Logic.CheckWin(grid) == true)
                     {
-                        Console.WriteLine("Congrats! You win!");
+                        UI.PrintYouWinMessage();
                         break;
                     }
                 }
@@ -51,14 +52,14 @@ namespace TTT
                     //check for a win
                     if (Logic.CheckWin(grid) == true)
                     {
-                        Console.WriteLine("Sorry, computer wins :(");
+                        UI.PrintComputerWinsMessage();
                         break;
                     }
                 }
 
                 else
                 {
-                    Console.WriteLine("Sorry, game over! No winner!");
+                    UI.PrintNoWinnerMessage();
                     break;
                 }
             }
