@@ -51,9 +51,9 @@ namespace TTT
             Console.WriteLine("Sorry, game over! No winner!");
         }
 
-        public static void PrintComputerSymbol()
+        public static void PrintComputerSymbol(char computerSymbol)
         {
-            Console.WriteLine($"Computer symbol is: {Logic.computerSymbol}");
+            Console.WriteLine($"Computer symbol is: {computerSymbol}");           
         }
 
         public static char AskForSymbol()

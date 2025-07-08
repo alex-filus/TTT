@@ -22,7 +22,7 @@ namespace TTT
 
             //assign symbol to the computer
             computerSymbol = Logic.AssignComputerSymbol(symbolChoice);
-            UI.PrintComputerSymbol();           
+            UI.PrintComputerSymbol(computerSymbol);           
 
             //Main game loop
             while (true)
