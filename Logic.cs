@@ -92,7 +92,7 @@
             for (int row = 1; row < Constants.ROWS; row++)
             {
                 if (grid[0, 0] == null)
-                    continue;
+                    diagonalWin1 = false;
                 if (grid[0, 0] != null && grid[0, 0] != grid[row, row])
                 {
                     diagonalWin1 = false;
@@ -108,7 +108,7 @@
             for (int col = 1; col < Constants.COLUMNS; col++)
             {
                 if (grid[Constants.ROWS - 1, 0] == null)
-                    continue;
+                    diagonalWin2 = false;
                 if (grid[Constants.ROWS - 1, 0] != null && grid[Constants.ROWS - 1, 0] != grid[Constants.ROWS - 1 - col, col])
                 {
                     diagonalWin2 = false;
